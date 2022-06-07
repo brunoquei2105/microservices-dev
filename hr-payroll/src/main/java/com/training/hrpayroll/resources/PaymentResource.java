@@ -2,6 +2,7 @@ package com.training.hrpayroll.resources;
 
 import com.training.hrpayroll.entities.Payment;
 import com.training.hrpayroll.services.PaymentService;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,8 @@ public class PaymentResource {
 
     private PaymentService paymentService;
 
-    public PaymentResource(PaymentService paymentService){
+    public PaymentResource(PaymentService paymentService, Environment env){
+
         this.paymentService = paymentService;
     }
 

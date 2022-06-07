@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import javax.ws.rs.core.UriBuilder;
 
 import java.util.List;
 
@@ -43,6 +42,7 @@ public class PaymentService {
 
         Payment payment = new Payment();
 
+        assert worker != null;
         payment.setName(worker.getName());
         payment.setDays(days);
         payment.setDaily_Income(worker.getDaily_Income());

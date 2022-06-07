@@ -2,6 +2,10 @@ package com.training.hrworker.resources;
 
 import com.training.hrworker.entities.Worker;
 import com.training.hrworker.repository.WorkerRepository;
+import org.slf4j.Logger;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,13 +34,10 @@ public class WorkerResource {
 
     @GetMapping("/{id}")
     public ResponseEntity<Worker> findById(@PathVariable Long id){
+
         Optional<Worker> optionalWorker = workerRepository.findById(id);
 
-        Worker o = optionalWorker.orElseGet(
-                () -> optionalWorker.orElseThrow(
-                        () -> new IllegalArgumentException("Resource not found")));
-        return ResponseEntity.ok(o);
-
+        return optionalWorker.map(ResponseEntity::ok).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
 
     }
