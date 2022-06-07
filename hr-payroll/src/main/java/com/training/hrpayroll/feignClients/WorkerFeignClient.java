@@ -1,7 +1,6 @@
 package com.training.hrpayroll.feignClients;
 
 import com.training.hrpayroll.entities.Worker;
-import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
