@@ -12,5 +12,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface WorkerFeignClient {
 
     @GetMapping("/{id}")
-     ResponseEntity<Worker> findById(@PathVariable Long id);
+    ResponseEntity<Worker> findById(@PathVariable Long id);
 }

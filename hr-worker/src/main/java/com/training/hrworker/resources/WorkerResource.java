@@ -2,9 +2,6 @@ package com.training.hrworker.resources;
 
 import com.training.hrworker.entities.Worker;
 import com.training.hrworker.repository.WorkerRepository;
-import org.slf4j.Logger;
-import org.springframework.core.env.Environment;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
