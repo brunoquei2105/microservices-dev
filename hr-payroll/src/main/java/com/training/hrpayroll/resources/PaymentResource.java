@@ -1,5 +1,6 @@
 package com.training.hrpayroll.resources;
 
+
 import com.training.hrpayroll.entities.Payment;
 import com.training.hrpayroll.services.PaymentService;
 import org.springframework.core.env.Environment;
@@ -20,10 +21,15 @@ public class PaymentResource {
         this.paymentService = paymentService;
     }
 
+    //@HystrixCommand(defaultFallback = "getPaymentAlternative")
     @GetMapping("/{workerId}/days/{days}")
     public ResponseEntity<Payment> getPayment(@PathVariable long workerId,
                                               @PathVariable int days){
 
        return ResponseEntity.ok(paymentService.getPayment(workerId, days)) ;
+    }
+
+    public String getPaymentAlternative(){
+        return "Request fails. It takes long time to response";
     }
 }
