@@ -1,0 +1,53 @@
+server:
+  port: 8765
+#Configuration
+spring:
+  application:
+    name: hr-api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: hr-payroll #this should be unique id of any route. For simplicity, we are giving the same name as the root context of our microservice 1
+          uri: lb://hr-payroll #The gateway will take the microservice that is registred with this name. lb is a short to load balace, following of the spring.application.name of each service.
+          predicates:
+            - Path=/payments/**
+        - id: hr-worker
+          uri: lb://hr-worker
+          predicates:
+            - Path=/workers/**
+#Actuator configuration
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - info
+          - health
+          - gateway
+#Resgistering hr-api-gateway as eureka client
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    hostname: localhost
+
+#Esta propriedade é que faz toda a magica acontecer, pois o gateway vai obter a lista de serviços
+# registrados no service discovery que em nosso caso é o Eureka, e vai configurar uma rota dinâmica para todos os
+# serviços que estão registados no Eureka, também vai realizar o balanceamento de carga nas requisições.
+
+  #spring.cloud.gateway.discovery.locator.enabled=true
+
+#Como não existe um padrão definido para registro de nomes dos serviços, através desta propriedade conseguimos
+# especificar que o nome das rotas para os serviços devem ter o nome todo em minusculo.
+
+  #spring.cloud.gateway.discovery.locator.lower-case-service-id=true

@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/payments")
 public class PaymentResource {
 
-    private PaymentService paymentService;
+    private final PaymentService paymentService;
 
     public PaymentResource(PaymentService paymentService, Environment env){
 
         this.paymentService = paymentService;
     }
 
-    //@HystrixCommand(defaultFallback = "getPaymentAlternative")
     @GetMapping("/{workerId}/days/{days}")
     public ResponseEntity<Payment> getPayment(@PathVariable long workerId,
                                               @PathVariable int days){
@@ -29,7 +28,4 @@ public class PaymentResource {
        return ResponseEntity.ok(paymentService.getPayment(workerId, days)) ;
     }
 
-    public String getPaymentAlternative(){
-        return "Request fails. It takes long time to response";
-    }
 }

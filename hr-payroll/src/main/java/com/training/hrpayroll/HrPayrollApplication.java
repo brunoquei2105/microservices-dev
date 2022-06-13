@@ -14,8 +14,6 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 @EnableFeignClients
 @EnableEurekaClient
-@EnableHystrix
-@EnableCircuitBreaker
 public class HrPayrollApplication {
 
     public static void main(String[] args) {
