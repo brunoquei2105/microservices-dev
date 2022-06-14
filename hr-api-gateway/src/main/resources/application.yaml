@@ -12,7 +12,7 @@ spring:
           lower-case-service-id: true
       routes:
         - id: hr-payroll #this should be unique id of any route. For simplicity, we are giving the same name as the root context of our microservice 1
-          uri: lb://hr-payroll #The gateway will take the microservice that is registred with this name. lb is a short to load balace, following of the spring.application.name of each service.
+          uri: lb://hr-payroll #The gateway will take the microservice that is registered with this name. lb is a short to load balance, following of the spring.application.name of each service.
           predicates:
             - Path=/payments/**
         - id: hr-worker
