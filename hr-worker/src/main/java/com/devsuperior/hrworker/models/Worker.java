@@ -1,22 +1,15 @@
-package com.training.hrworker.entities;
+package com.devsuperior.hrworker.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "tb_worker")
 public class Worker implements Serializable {
-
     private static final long serialVersionUID = 7483778393166659265L;
 
     @Id
@@ -25,5 +18,4 @@ public class Worker implements Serializable {
     private Long id;
     private String name;
     private double daily_Income;
-
 }
